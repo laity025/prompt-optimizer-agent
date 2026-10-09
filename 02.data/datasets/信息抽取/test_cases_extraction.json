@@ -1,0 +1,84 @@
+{
+  "dataset_id": "prompt_opt_extraction",
+  "task_type": "extraction",
+  "task_type_label": "信息抽取",
+  "description": "从非结构化文本中抽取指定实体与字段，要求输出为结构化JSON，测评提示词在信息抽取任务上的效果",
+  "criteria_slug": "criteria_extraction_fidelity",
+  "recommended_metrics": ["格式合规", "字段完整率", "关键词命中", "评审打分"],
+  "split_ratio": ["dev", "val", "test"],
+  "split_ratio_values": [8, 1, 1],
+  "version": "1.0.0",
+  "output_schema": {"person": "姓名", "company": "公司", "position": "职位", "email": "邮箱", "phone": "电话"},
+  "cases": [
+    {
+      "case_id": "ex_001",
+      "input_text": "您好，我是北京华信科技有限公司的产品经理张三，联系方式 13800001111，工作邮箱 zhang.san@huaxin.com，希望与贵司洽谈智能硬件合作事宜。",
+      "reference_output": "{\"person\":\"张三\",\"company\":\"北京华信科技有限公司\",\"position\":\"产品经理\",\"email\":\"zhang.san@huaxin.com\",\"phone\":\"13800001111\"}",
+      "keywords": ["张三", "北京华信科技有限公司", "产品经理", "zhang.san@huaxin.com", "13800001111"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_002",
+      "input_text": "采购部李四（电话 13900002222，邮箱 lisi@example.com）负责本次服务器采购，目前预算为五十万元。",
+      "reference_output": "{\"person\":\"李四\",\"company\":\"\",\"position\":\"采购部\",\"email\":\"lisi@example.com\",\"phone\":\"13900002222\"}",
+      "keywords": ["李四", "采购部", "lisi@example.com", "13900002222"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_003",
+      "input_text": "深圳市云端软件有限公司人事行政总监王五，联系电话 13500003333，以内推邮箱 wang.wu@yunduan.cn 接收简历。",
+      "reference_output": "{\"person\":\"王五\",\"company\":\"深圳市云端软件有限公司\",\"position\":\"人事行政总监\",\"email\":\"wang.wu@yunduan.cn\",\"phone\":\"13500003333\"}",
+      "keywords": ["王五", "深圳市云端软件有限公司", "人事行政总监", "wang.wu@yunduan.cn", "13500003333"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_004",
+      "input_text": "大家好，我是游学科技有限公司的市场部经理赵六，手机号 13700004444，业务邮箱 zhaoliu@youxue.com。",
+      "reference_output": "{\"person\":\"赵六\",\"company\":\"游学科技有限公司\",\"position\":\"市场部经理\",\"email\":\"zhaoliu@youxue.com\",\"phone\":\"13700004444\"}",
+      "keywords": ["赵六", "游学科技有限公司", "市场部经理", "zhaoliu@youxue.com", "13700004444"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_005",
+      "input_text": "您好，我是天工信息技术有限公司的售后主管钱五，服务热线 13100005555，接单邮箱 qian.wu@tiangong.com。",
+      "reference_output": "{\"person\":\"钱五\",\"company\":\"天工信息技术有限公司\",\"position\":\"售后主管\",\"email\":\"qian.wu@tiangong.com\",\"phone\":\"13100005555\"}",
+      "keywords": ["钱五", "天工信息技术有限公司", "售后主管", "qian.wu@tiangong.com", "13100005555"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_006",
+      "input_text": "顺丰科技招聘软件工程师，联系人刘工：13600005555，招聘邮箱 careers@sf-tech.com，办公地点深圳。",
+      "reference_output": "{\"person\":\"刘工\",\"company\":\"顺丰科技\",\"position\":\"软件工程师\",\"email\":\"careers@sf-tech.com\",\"phone\":\"13600005555\"}",
+      "keywords": ["刘工", "顺丰科技", "软件工程师", "careers@sf-tech.com"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_007",
+      "input_text": "华创资本投资经理陈七评审完项目后留下联系方式：18800006666，邮箱 chenqi@huachuang.com。",
+      "reference_output": "{\"person\":\"陈七\",\"company\":\"华创资本\",\"position\":\"投资经理\",\"email\":\"chenqi@huachuang.com\",\"phone\":\"18800006666\"}",
+      "keywords": ["陈七", "华创资本", "投资经理", "chenqi@huachuang.com"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_008",
+      "input_text": "天津光明食品销售部部长孙八，值班手机 13300007777，邮箱 sunba@gmfoods.cn 用于商务接洽。",
+      "reference_output": "{\"person\":\"孙八\",\"company\":\"天津光明食品\",\"position\":\"销售部部长\",\"email\":\"sunba@gmfoods.cn\",\"phone\":\"13300007777\"}",
+      "keywords": ["孙八", "天津光明食品", "销售部部长", "13300007777"],
+      "split": "dev"
+    },
+    {
+      "case_id": "ex_009",
+      "input_text": "杭州云栖电商战略顾问周九的对外联系：15900008888，zhoux@yunxi.com。",
+      "reference_output": "{\"person\":\"周九\",\"company\":\"杭州云栖电商\",\"position\":\"战略顾问\",\"email\":\"zhoux@yunxi.com\",\"phone\":\"15900008888\"}",
+      "keywords": ["周九", "杭州云栖电商", "战略顾问", "zhoux@yunxi.com"],
+      "split": "val"
+    },
+    {
+      "case_id": "ex_010",
+      "input_text": "法务部吴十（2000 电话：13000009999 email wushi@legal.org）常驻北京，负责合同审核。",
+      "reference_output": "{\"person\":\"吴十\",\"company\":\"\",\"position\":\"法务部\",\"email\":\"wushi@legal.org\",\"phone\":\"13000009999\"}",
+      "keywords": ["吴十", "法务部", "wushi@legal.org", "13000009999"],
+      "split": "test"
+    }
+  ]
+}

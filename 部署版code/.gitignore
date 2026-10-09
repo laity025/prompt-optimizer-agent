@@ -1,0 +1,17 @@
+# ===== 敏感配置（严禁提交）=====
+.env
+.env.*
+!.env.example
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# ===== 数据库（含用户数据）=====
+*.db
+*.db-journal
+
+# ===== 日志 =====
+*.log

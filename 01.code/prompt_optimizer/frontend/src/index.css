@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全局基础样式已迁移至 src/styles/pe.css（皇家蓝作品集设计系统 + antd 覆写） */

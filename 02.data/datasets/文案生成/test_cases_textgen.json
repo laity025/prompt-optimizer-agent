@@ -1,0 +1,83 @@
+{
+  "dataset_id": "prompt_opt_textgen",
+  "task_type": "text_gen",
+  "task_type_label": "文案生成",
+  "description": "根据商品信息生成吸引人的电商文案，测评提示词在营销文案生成任务上的效果",
+  "criteria_slug": "criteria_text_gen_marketing",
+  "recommended_metrics": ["关键词命中", "格式合规", "评审打分"],
+  "split_ratio": ["dev", "val", "test"],
+  "split_ratio_values": [8, 1, 1],
+  "version": "1.0.0",
+  "cases": [
+    {
+      "case_id": "tg_001",
+      "input_text": "商品：无线蓝牙耳机Pro，卖点：主动降噪、续航30小时、蓝牙5.4、支持快充10分钟听歌2小时",
+      "reference_output": "",
+      "keywords": ["降噪", "续航", "10分钟听歌2小时"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_002",
+      "input_text": "商品：智能体脂秤，卖点：16项身体数据、多人共享、微信小程序同步、专属饮食建议",
+      "reference_output": "",
+      "keywords": ["16项", "多人共享", "饮食建议"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_003",
+      "input_text": "商品：便携榨汁杯，卖点：轻巧随行、Type-C快充、304不锈钢刀头、一键清洗",
+      "reference_output": "",
+      "keywords": ["便携", "Type-C快充", "一键清洗"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_004",
+      "input_text": "商品：乳胶记忆枕，卖点：人体工学曲线、透气面料、缓解颈椎压力、高低可调",
+      "reference_output": "",
+      "keywords": ["人体工学", "颈椎", "透气"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_005",
+      "input_text": "商品：高速吹风机，卖点：11万转马达、负离子护发、温控不伤发、轻量仅370g",
+      "reference_output": "",
+      "keywords": ["11万转", "负离子", "护发"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_006",
+      "input_text": "商品：桌面加湿器，卖点：400ml大容量、静音运行、七彩夜灯、缺水自动断电",
+      "reference_output": "",
+      "keywords": ["静音", "七彩夜灯", "自动断电"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_007",
+      "input_text": "商品：折叠跑步机，卖点：88cm宽跑带、静音电机、一键折叠、15档坡度调节",
+      "reference_output": "",
+      "keywords": ["静音电机", "一键折叠", "坡度"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_008",
+      "input_text": "商品：智能台灯，卖点：无频闪护眼、色温可调、番茄钟专注模式、智能感光",
+      "reference_output": "",
+      "keywords": ["护眼", "色温可调", "番茄钟"],
+      "split": "dev"
+    },
+    {
+      "case_id": "tg_009",
+      "input_text": "商品：轻食餐盒礼盒，卖点：低卡高蛋白、15种口味、冷链到家、开盖即食",
+      "reference_output": "",
+      "keywords": ["低卡", "高蛋白", "冷链"],
+      "split": "val"
+    },
+    {
+      "case_id": "tg_010",
+      "input_text": "商品：磁吸无线充电宝，卖点：10000mAh、磁吸对位、20W快充、自带支架",
+      "reference_output": "",
+      "keywords": ["磁吸", "20W快充", "自带支架"],
+      "split": "test"
+    }
+  ]
+}

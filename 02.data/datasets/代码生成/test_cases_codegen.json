@@ -1,0 +1,93 @@
+{
+  "dataset_id": "prompt_opt_codegen",
+  "task_type": "code",
+  "task_type_label": "代码生成",
+  "description": "根据函数需求生成代码，通过可运行性与逻辑正确性（单元测试）评审提示词在代码生成任务上的效果",
+  "criteria_slug": "criteria_code_func_correct",
+  "recommended_metrics": ["格式合规", "单元测试通过率", "评审打分"],
+  "split_ratio": ["dev", "val", "test"],
+  "split_ratio_values": [8, 1, 1],
+  "version": "1.0.0",
+  "cases": [
+    {
+      "case_id": "cg_001",
+      "input_text": "编写一个Python函数 is_palindrome(s)，判断字符串s是否为回文串（忽略大小写与空格），返回布尔值。要求包含函数注释与简单示例。",
+      "reference_output": "def is_palindrome(s):\n    import re\n    t = re.sub(r'[^A-Za-z0-9]', '', s).lower()\n    return t == t[::-1]",
+      "keywords": ["is_palindrome", "bool", "回文"],
+      "run_test": {"inputs": [["A man a plan a canal Panama"], ["hello"], ["Was it a car or a cat I saw"]], "expected": [true, false, true]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_002",
+      "input_text": "编写一个Python函数 two_sum(nums, target)，返回数组中两个数使其和等于target的两个下标（保证存在唯一解）。",
+      "reference_output": "def two_sum(nums, target):\n    m = {}\n    for i, n in enumerate(nums):\n        if target - n in m:\n            return [m[target - n], i]\n        m[n] = i\n    return []",
+      "keywords": ["two_sum", "下标", "list"],
+      "run_test": {"inputs": [[[2,7,11,15], 9], [[3,2,4], 6]], "expected": [[0,1], [1,2]]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_003",
+      "input_text": "编写一个Python函数 ngram_tokens(text, n)，将文本按空白切分为词后，生成所有n元组（n-gram）的列表。",
+      "reference_output": "def ngram_tokens(text, n):\n    words = text.split()\n    return [tuple(words[i:i+n]) for i in range(len(words) - n + 1)]",
+      "keywords": ["ngram_tokens", "n-gram", "tuple"],
+      "run_test": {"inputs": [["a b c d", 2], ["x y z", 3]], "expected": [[["a","b"],["b","c"],["c","d"]], [["x","y","z"]]]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_004",
+      "input_text": "编写一个Python函数 word_freq(sentence)，统计句子中每个单词出现的次数（忽略大小写与标点），返回字典。",
+      "reference_output": "import re\nfrom collections import Counter\ndef word_freq(sentence):\n    words = re.findall(r'[A-Za-z0-9]+', sentence.lower())\n    return dict(Counter(words))",
+      "keywords": ["word_freq", "字典", "Counter"],
+      "run_test": {"inputs": [["the cat and the dog"]], "expected": [{"the":2,"cat":1,"and":1,"dog":1}]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_005",
+      "input_text": "编写一个Python函数 remove_duplicates(lst)，移除列表中重复元素并保持原有顺序，返回新列表。",
+      "reference_output": "def remove_duplicates(lst):\n    seen = set()\n    out = []\n    for x in lst:\n        if x not in seen:\n            seen.add(x)\n            out.append(x)\n    return out",
+      "keywords": ["remove_duplicates", "保持顺序", "set"],
+      "run_test": {"inputs": [[ [1,2,2,3,1,4] ], [ [] ]], "expected": [[1,2,3,4], []]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_006",
+      "input_text": "编写一个Python函数 gcd(a, b)，使用欧几里得算法计算两个整数的最大公约数，带注释。",
+      "reference_output": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return abs(a)",
+      "keywords": ["gcd", "欧几里得", "最大公约数"],
+      "run_test": {"inputs": [[12, 18], [7, 5], [0, 5]], "expected": [6, 1, 5]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_007",
+      "input_text": "编写一个Python函数 count_chars(s)，统计字符串中英文字母、数字、空格与其他字符的数量，返回包含四个计数的字典。",
+      "reference_output": "def count_chars(s):\n    letters = sum(c.isalpha() for c in s)\n    digits = sum(c.isdigit() for c in s)\n    spaces = sum(c.isspace() for c in s)\n    others = len(s) - letters - digits - spaces\n    return {\"letters\": letters, \"digits\": digits, \"spaces\": spaces, \"others\": others}",
+      "keywords": ["count_chars", "letters", "others"],
+      "run_test": {"inputs": [["Hi 123!"]], "expected": [{"letters":2,"digits":3,"spaces":1,"others":1}]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_008",
+      "input_text": "编写一个Python函数 reverse_words(text)，反转句子中单词的顺序（单词内部不倒序），保持单词间为一个空格。",
+      "reference_output": "def reverse_words(text):\n    return ' '.join(text.split()[::-1])",
+      "keywords": ["reverse_words", "反转顺序", "单词"],
+      "run_test": {"inputs": [["the sky is blue"]], "expected": ["blue is sky the"]},
+      "split": "dev"
+    },
+    {
+      "case_id": "cg_009",
+      "input_text": "编写一个Python函数 is_balanced(s)，判断括号字符串s中圆括号与方括号是否正确配对，返回布尔值。",
+      "reference_output": "def is_balanced(s):\n    pairs = {')': '(', ']': '['}\n    stack = []\n    for ch in s:\n        if ch in '([':\n            stack.append(ch)\n        elif ch in ')]':\n            if not stack or stack.pop() != pairs[ch]:\n                return False\n    return len(stack) == 0",
+      "keywords": ["is_balanced", "栈", "括号"],
+      "run_test": {"inputs": [["([)]"], ["([])"], [""], ["(("]], "expected": [false, true, true, false]},
+      "split": "val"
+    },
+    {
+      "case_id": "cg_010",
+      "input_text": "编写一个Python函数 fib(n)，返回斐波那契数列第n项（n从0开始，第0项为0），使用迭代实现，并附注释。",
+      "reference_output": "def fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a",
+      "keywords": ["fib", "斐波那契", "迭代"],
+      "run_test": {"inputs": [[0], [1], [10]], "expected": [0, 1, 55]},
+      "split": "test"
+    }
+  ]
+}
